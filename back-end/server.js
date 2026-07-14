@@ -2,12 +2,15 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
-import router from "./routes/userRouter.js";
-// import db from "./database/database.js";
+import userRoutes from "./routes/userRouter.js";
+import taskRoutes from "./routes/taskRouter.js";
+import db from "./database/database.js";
 
 const app = express();
 app.use(express.json());
-app.use(router);
+
+app.use("/users", userRoutes);
+app.use("/tasks", taskRoutes);
 
 app.get("/", (req, res) => {
   res.json({
